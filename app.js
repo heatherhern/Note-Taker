@@ -21,20 +21,20 @@ app.use(express.static('public'));
 // =============================================================
 // * The following HTML routes should be created:
 
-// Basic route that sends the user first to the Index Page
-app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "develop/public/index.html"));
-});
+// // Basic route that sends the user first to the Index Page
+// app.get("/", function(req, res) {
+//     res.sendFile(path.join(__dirname, "develop/public/index.html"));
+// });
 
-//   * GET `/notes` - Should return the `notes.html` file.
-app.get("/notes", function (req, res) {
-    res.sendFile(path.join(__dirname, "develop/public/notes.html"));
-});
+// //   * GET `/notes` - Should return the `notes.html` file.
+// app.get("/notes", function (req, res) {
+//     res.sendFile(path.join(__dirname, "develop/public/notes.html"));
+// });
 
-//   * GET `*` - Should return the `index.html` file
-app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "develop/public/index.html"));
-});
+// //   * GET `*` - Should return the `index.html` file
+// app.get("*", function (req, res) {
+//     res.sendFile(path.join(__dirname, "develop/public/index.html"));
+// });
 
 
 // Starts the server to begin listening
@@ -48,13 +48,13 @@ app.listen(PORT, function() {
 //   * GET `/api/notes` - Should read the `db.json` file and return all 
 //   saved notes as JSON.
 
-const apiRoutes = function(app){
-    app.get("/api/notes", function(req, res){
-        fs.readFile(dbFilePath, "utf8", function(err, data){
-            console.log("Running 'Get db.json'");
-            res.json(data);
-        });
-    });
+// const apiRoutes = function(app){
+//     app.get("/api/notes", function(req, res){
+//         fs.readFile(dbFilePath, "utf8", function(err, data){
+//             console.log("Running 'Get db.json'");
+//             res.json(data);
+//         });
+//     });
 
 htmlRoutes(app);
 apiRoutes(app);
@@ -64,22 +64,22 @@ apiRoutes(app);
 //   request body, add it to the `db.json` file, and then return the 
 //   new note to the client.
 
-app.post("/api/notes", function(req, res){
-    const body = req.body;
-    body.id = uuidv4();
-    fsReadFile(dbFilePath).then(function(res){
-        let dbJsonArray = JSON.parse(res);
-        dbJsonArray.push(body);
-        fs.writeFile(dbFilePath, JSON.stringify(dbJsonArray, null, 2), function(err){
-            if(err){
-                throw err;
-            }
+// app.post("/api/notes", function(req, res){
+//     const body = req.body;
+//     body.id = uuidv4();
+//     fsReadFile(dbFilePath).then(function(res){
+//         let dbJsonArray = JSON.parse(res);
+//         dbJsonArray.push(body);
+//         fs.writeFile(dbFilePath, JSON.stringify(dbJsonArray, null, 2), function(err){
+//             if(err){
+//                 throw err;
+//             }
 
-            console.log("Added new note to db.json")
-        });
-    });
-    res.json(body);
-});
+//             console.log("Added new note to db.json")
+//         });
+//     });
+//     res.json(body);
+// });
 
 //   * DELETE `/api/notes/:id` - Should receive a query parameter 
 //   containing the id of a note to delete. This means you'll need 
@@ -88,30 +88,30 @@ app.post("/api/notes", function(req, res){
 //    the `db.json` file, remove the note with the given `id` property, 
 //    and then rewrite the notes to the `db.json` file.
 
-app.delete("/api/notes/:id", function(req, response){
-    const id = req.params.id;
-    console.log(id);
+// app.delete("/api/notes/:id", function(req, response){
+//     const id = req.params.id;
+//     console.log(id);
 
-    fsReadFile(dbFilePath).then(function(res){
-        let dbJsonArray = JSON.parse(res);
+//     fsReadFile(dbFilePath).then(function(res){
+//         let dbJsonArray = JSON.parse(res);
         
-        dbJsonArray.forEach(element => {
-            if(id === element.id){
-                console.log("deleting from array");
-                dbJsonArray.splice(dbJsonArray.indexOf(element), 1);
-                response.send("Successfully deleted from file");
-            }
-        });
+//         dbJsonArray.forEach(element => {
+//             if(id === element.id){
+//                 console.log("deleting from array");
+//                 dbJsonArray.splice(dbJsonArray.indexOf(element), 1);
+//                 response.send("Successfully deleted from file");
+//             }
+//         });
         
-        fs.writeFile(dbFilePath, JSON.stringify(dbJsonArray, null, 2), function(err){
-            if(err){
-                throw err;
-            }
+//         fs.writeFile(dbFilePath, JSON.stringify(dbJsonArray, null, 2), function(err){
+//             if(err){
+//                 throw err;
+//             }
 
-            console.log("Deleted from and updated 'db.json'")
-        });
-    });
-});
-};
+//             console.log("Deleted from and updated 'db.json'")
+//         });
+//     });
+// });
+// };
 
-module.exports = apiRoutes;
+
