@@ -1,7 +1,10 @@
 // Dependencies
 // =============================================================
-var express = require("express");
-var path = require("path");
+const express = require("express");
+const path = require("path");
+const fs = require("fs");
+const { v4: uuidv4 } = require('uuid');
+const util = require('util');
 
 // Sets up the Express App
 // =============================================================
@@ -54,6 +57,21 @@ const apiRoutes = function(app){
 //   * POST `/api/notes` - Should receive a new note to save on the 
 //   request body, add it to the `db.json` file, and then return the 
 //   new note to the client.
+
+app.post("/api/notes", function(req, res){
+    const body = req.body;
+    body.id = uuidv4();
+    fsReadFile(dbFilePath).then(function(res){
+        let dbJsonArray = JSON.parse(res);
+        dbJsonArray.push(body);
+        fs.writeFile(dbFilePath, JSON.stringify(dbJsonArray, null, 2), function(err){
+            if(err){
+                throw err;
+            }
+
+            console.log("Added new note to db.json")
+        });
+    });
 
 //   * DELETE `/api/notes/:id` - Should receive a query parameter 
 //   containing the id of a note to delete. This means you'll need 
