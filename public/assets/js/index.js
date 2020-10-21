@@ -8,7 +8,7 @@ const $noteList = $(".list-container .list-group");
 let activeNote = {};
 
 // A function for getting all notes from the db
-const getNotes = () => {
+const getNotesFromDB = () => {
   return $.ajax({
     url: "/api/notes",
     method: "GET",
@@ -16,7 +16,7 @@ const getNotes = () => {
 };
 
 // A function for saving a note to the db
-const saveNote = (note) => {
+const saveNoteFromDB = (note) => {
   return $.ajax({
     url: "/api/notes",
     data: note,
@@ -25,7 +25,7 @@ const saveNote = (note) => {
 };
 
 // A function for deleting a note from the db
-const deleteNote = (id) => {
+const deleteNoteFromDB = (id) => {
   return $.ajax({
     url: "api/notes/" + id,
     method: "DELETE",
@@ -33,7 +33,7 @@ const deleteNote = (id) => {
 };
 
 // If there is an activeNote, display it, otherwise render empty inputs
-const renderActiveNote = () => {
+const showCurrentNote = () => {
   $saveNoteBtn.hide();
 
   if (activeNote.id) {
@@ -56,9 +56,9 @@ const handleNoteSave = function () {
     text: $noteText.val(),
   };
 
-  saveNote(newNote).then(() => {
+  saveNoteFromDB(newNote).then(() => {
     getAndRenderNotes();
-    renderActiveNote();
+    showCurrentNote();
   });
 };
 
@@ -75,24 +75,24 @@ const handleNoteDelete = function (event) {
 
   deleteNote(note.id).then(() => {
     getAndRenderNotes();
-    renderActiveNote();
+    showCurrentNote();
   });
 };
 
 // Sets the activeNote and displays it
 const handleNoteView = function () {
   activeNote = $(this).data();
-  renderActiveNote();
+  showCurrentNote();
 };
 
 // Sets the activeNote to and empty object and allows the user to enter a new note
 const handleNewNoteView = function () {
   activeNote = {};
-  renderActiveNote();
+  showCurrentNote();
 };
 
-// If a note's title or text are empty, hide the save button
-// Or else show it
+// // If a note's title or text are empty, hide the save button
+// // Or else show it
 const handleRenderSaveBtn = function () {
   if (!$noteTitle.val().trim() || !$noteText.val().trim()) {
     $saveNoteBtn.hide();
@@ -101,7 +101,7 @@ const handleRenderSaveBtn = function () {
   }
 };
 
-// Render's the list of note titles
+// Renders the list of note titles
 const renderNoteList = (notes) => {
   $noteList.empty();
 
