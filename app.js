@@ -1,10 +1,6 @@
 // Dependencies
 // =============================================================
 const express = require("express");
-const path = require("path");
-const fs = require("fs");
-const { v4: uuidv4 } = require('uuid');
-const util = require('util');
 const htmlRoutes = require("./routes/htmlRoutes.js");
 const apiRoutes = require("./routes/apiRoutes.js");
 
