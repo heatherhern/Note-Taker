@@ -1,6 +1,6 @@
 # Link to Deployed Application
 
-![App Screenshot]("./public/assets/img/app.png")
+![App Screenshot](./public/assets/img/app.png)
 
 [View App](https://sheltered-sierra-20942.herokuapp.com/)
 
