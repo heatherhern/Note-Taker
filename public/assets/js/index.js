@@ -25,7 +25,7 @@ const saveNoteFromDB = (note) => {
 };
 
 // A function for deleting a note from the db
-const deleteNoteFromDB = (id) => {
+const deleteNote = (id) => {
   return $.ajax({
     url: "api/notes/" + id,
     method: "DELETE",
@@ -124,7 +124,7 @@ const renderNoteList = (notes) => {
   };
 
   if (notes.length === 0) {
-    noteListItems.push(create$li("No saved Notes", false));
+    noteListItems.push(create$li("no saved notes", false));
   }
 
   notes.forEach((note) => {
