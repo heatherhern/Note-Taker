@@ -3,8 +3,6 @@ const path = require("path");
 const fs = require("fs");
 const { v4: uuidv4 } = require('uuid');
 const util = require('util');
-const htmlRoutes = require("./routes/htmlRoutes.js");
-const apiRoutes = require("./routes/apiRoutes.js");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -68,16 +66,9 @@ app.delete("/api/notes/:id", function (req, res) {
 
         return res.json(database);
     });
-
-    //res.send("Got a DELETE request!")
 })
-
-
 
 app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
 });
-
-// htmlRoutes(app);
-// apiRoutes(app);
 
