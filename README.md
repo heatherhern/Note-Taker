@@ -1,9 +1,11 @@
-# Link to Deployed Application
+# Note Taking App
+This app allows you to write, save, and delete notes to keep track of tasks, lists, and to-dos. 
 
 ![App Screenshot](./public/assets/img/app.png)
 
-[View App](https://sheltered-sierra-20942.herokuapp.com/)
+## Link to Deployed Application
 
+[View Deployed App](https://sheltered-sierra-20942.herokuapp.com/)
 
 ## User Story
 
