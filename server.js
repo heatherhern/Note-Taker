@@ -4,9 +4,6 @@ const fs = require("fs");
 const { v4: uuidv4 } = require('uuid');
 const util = require('util');
 
-heroku config:set MONGODB_URI="mongodb+srv://heather_user_1:QtzzXNjljcTCj5Vs@heather-east.rz7vi.mongodb.net/db?retryWrites=true&w=majority"
-const uri = process.env.MONGODB_URI;
-
 const app = express();
 const PORT = process.env.PORT || 3000;
 
