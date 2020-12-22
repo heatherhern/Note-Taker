@@ -12,6 +12,7 @@
   "dependencies": {
     "dependencies": "0.0.1",
     "express": "^4.16.4",
+    "linux": "^4.2.1",
     "node": "^15.4.0",
     "path": "^0.12.7",
     "util": "^0.12.3",
