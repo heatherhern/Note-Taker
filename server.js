@@ -4,6 +4,8 @@ const fs = require("fs");
 const { v4: uuidv4 } = require('uuid');
 const util = require('util');
 
+const uri = process.env.MONGODB_URI;
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
